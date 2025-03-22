@@ -1,49 +1,57 @@
-.container {
-    height: 100vh;
+body{
+    background-image: url('./assets/fondo.jpg'); /* Ruta a tu imagen */
+    background-size: cover; /* Ajusta el tamaño del fondo */
+    background-repeat: no-repeat; /* Evita que se repita */
+    background-position: center; /* Centra el fondo */
+}
+
+.ContainerPrincipal {
+    height: 90vh;
     width: 100%;
     display: flex;
     justify-content: center;    
     align-items: center;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
 }
 
-.IniciarSesion {
+.ContainerForm {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background: rgb(18, 18, 18);
-    color: white;
+    background: #312a25;
+    color: #d7d2cb;
     border-radius: 5px;
     width: 400px;
-    height: 400px;
+    height: 450px;
     text-align: center;
-    gap: 30px;
+    padding-top: 20px;
+    gap: 25px;
 }
+
+
 
 .Button{
     font-weight: 700;
-    color: rgb(18, 18, 18);
+    color: #312a25;
     padding: 9px 25px;
-    background: #ffffff;
-    border-color: #ffffff;
+    background: #d7d2cb;
+    border-color: #d7d2cb;
     border-radius: 50px;
     cursor: pointer;
     transition: all 0.1s ease 0s;
-    font-family:'Poppins', sans-serif;
 }
 
 .Button:hover{
-    background-color: rgb(18, 18, 18) ;
-    color: #ffffff;
+    background-color: #312a25 ;
+    color: #d7d2cb;
     transform: scale(1.1);
 }
 
 .Label{
-    color: white;
+    color: #d7d2cb;
     font-size: 14px;
     margin-bottom: 8px;
     display: inline-block;
-    font-family:'Poppins', sans-serif;
 }
 
 .Input{
@@ -52,12 +60,17 @@
     width: 300px;
     margin-bottom: 15px;
     font-size: 15px;
-    font-weight: 500;
-    background: rgb(18, 18, 18);
-    outline: none;
     border-radius: 10px;
     box-shadow: inset 0 0 0 1px #878787;
-    color: white;
-    font-family:'Poppins', sans-serif;
 }
 
+.PieTexto{
+    color: #d7d2cb;
+    font-size: 14px;
+}
+
+.PieTextoUrl{
+    text-decoration: none;
+    color: #d7d2cb;
+}
+  

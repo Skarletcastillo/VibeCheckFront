@@ -1,7 +1,7 @@
 import IniciarSesion from "./IniciarSesion";
 const Interfaz = () => {
   return (
-    <section className="container">
+    <section className="ContainerPrincipal">
         <IniciarSesion />
     </section>
   );
