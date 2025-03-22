@@ -7,6 +7,6 @@ document.title = 'Iniciar Sesión';
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <Interfaz />
+      <Interfaz />
   </StrictMode>,
 )
