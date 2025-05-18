@@ -1,0 +1,4 @@
+@import './../Profesor/VistaProfesor.css';
+.status-present { color: #2c6b2a; font-weight: 600; }
+.status-absent  { color: #a63232; font-weight: 600; }
+.status-pending { color: #b48b1f; font-weight: 600; }

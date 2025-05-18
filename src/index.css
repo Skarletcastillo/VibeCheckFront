@@ -1,75 +1,9 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
 body{
-    background-image: url('./assets/fondo.jpg'); /* Ruta a tu imagen */
-    background-size: cover; /* Ajusta el tamaño del fondo */
-    background-repeat: no-repeat; /* Evita que se repita */
-    background-position: center; /* Centra el fondo */
+    background: url('./assets/fondo.jpg') center/cover no-repeat;
 }
-
-.ContainerPrincipal {
-    height: 90vh;
-    width: 100%;
-    display: flex;
-    justify-content: center;    
-    align-items: center;
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif ;
-}
-
-.ContainerForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    background: #312a25;
-    color: #d7d2cb;
-    border-radius: 10px;
-    width: 400px;
-    height: 450px;
-    text-align: center;
-    padding-top: 20px;
-    gap: 25px;
-}
-
-
-
-.Button{
-    font-weight: 700;
-    color: #312a25;
-    padding: 9px 25px;
-    background: #d7d2cb;
-    border-color: #d7d2cb;
-    border-radius: 50px;
-    cursor: pointer;
-    transition: all 0.1s ease 0s;
-}
-
-.Button:hover{
-    background-color: #312a25 ;
-    color: #d7d2cb;
-    transform: scale(1.1);
-}
-
-.Label{
-    color: #d7d2cb;
-    font-size: 14px;
-    margin-bottom: 8px;
-    display: inline-block;
-}
-
-.Input{
-    display: block;
-    padding: 14px;
-    width: 300px;
-    margin-bottom: 15px;
-    font-size: 15px;
-    border-radius: 10px;
-    box-shadow: inset 0 0 0 1px #878787;
-}
-
-.PieTexto{
-    color: #d7d2cb;
-    font-size: 14px;
-}
-
-.PieTextoUrl{
-    color: #d7d2cb;
-}
-  

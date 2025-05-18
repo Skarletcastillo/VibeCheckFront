@@ -1,0 +1,23 @@
+.navbar {
+ display: flex;
+ flex-direction: row;
+  background: #312a25;
+  padding: 20px;
+  justify-content: space-between;
+  font-size: 20px;
+}
+
+.navbar a {
+  color: #d7d2cb;
+  margin: 0 1rem;
+  text-decoration: none;
+
+}
+
+.LogoApp{
+  width: 50px;
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+

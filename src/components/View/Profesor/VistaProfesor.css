@@ -1,0 +1,30 @@
+.attendance-table {
+  width: 50%;
+  margin: 4rem auto;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #312a25;
+  border-radius: 0.5rem;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+}
+.attendance-table thead { background: #d7d2cb; }
+.attendance-table th, .attendance-table td {
+  padding: 20px;
+  font-size: 17px;
+  color: #48332b;
+  text-align: center;
+}
+.attendance-table th { border-bottom: 2px solid #eef6ee; }
+.attendance-table tbody tr:nth-child(even) { background: #d7d2cb; }
+.attendance-table tbody tr:nth-child(odd)  { background: #eef6ee; }
+/* .select-status { padding: 0.3rem; border-radius: 0.25rem; border: 1px solid #eef6ee; background: #d7d2cb; } */
+
+.select-status{
+  font-size: 17px;
+  border-radius: 0.25rem; 
+  border: 1px solid #eef6ee; 
+  background: #d7d2cb;
+  padding: 5px;
+}
