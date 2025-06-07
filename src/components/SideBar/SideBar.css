@@ -1,0 +1,174 @@
+
+@import url('https://fonts.cdnfonts.com/css/crusoe-text'); /* Puedes elegir otra fuente si lo deseas */
+@import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
+/* Estilos generales del Dashboard Layout */
+.dashboard-layout {
+  display: flex;
+  height: 100vh;
+  transition: background-color 0.3s ease; /* Para la transición del layout */
+}
+
+/* Estilos del Sidebar */
+.sidebar {
+  width: 250px;
+  background-color: var(--sidebar-bg-light); /* Rojo original para modo claro */
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease; /* Transición para el cambio de tema */
+}
+
+/* Sección de Perfil (Bloque Rojo Superior) */
+.sidebar-profile {
+  background-color: var(--sidebar-bg-light); /* Rojo, mismo color que el sidebar principal en modo claro */
+  padding: 20px 0;
+  width: 100%;
+  text-align: center;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Transición para el cambio de tema */
+  color: white; /* Texto blanco en modo claro */
+}
+
+.profile-avatar {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+.profile-role {
+  font-size: 1.1em;
+  margin-top: -8px;
+  font-weight: bold;
+  font-family: 'Crusoe Text', sans-serif;
+  color: #fff; 
+}
+
+
+/* Sección de Navegación (Bloque Amarillo Central) */
+.sidebar-nav {
+  background-color: var(--nav-block-light); /* Amarillo claro para modo claro */
+  width: 100%;
+  padding: 10px 80px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: background-color 0.3s ease; /* Transición para el cambio de tema */
+}
+
+.nav-item {
+  display: flex;
+  padding: 10px;
+  width: calc(100% - 40px);
+  text-decoration: none;
+  color: #4051e1; /* Texto oscuro para el fondo amarillo claro */
+  font-weight: bold;
+  font-family: "Paytone One", sans-serif;
+  font-size: 23px;
+}
+
+.nav-item img {
+  width: 90px;
+  height: 90px;
+  margin-right: 10px; /* Espacio entre el icono y el texto */
+}
+
+.nav-item:hover {
+  background-color: rgba(255, 0, 0, 0.2);
+}
+
+/* Estilo para el ítem activo (Home) */
+.nav-item.active {
+  font-size: 23px;
+  color: #4051e1;
+  font-family: "Paytone One", sans-serif;
+}
+
+
+
+
+/* ... (resto de .nav-icon - sin cambios significativos) ... */
+
+
+/* Sección Inferior (Bloque Rojo Inferior) */
+.sidebar-bottom {
+  background-color: var(--sidebar-bg-light); /* Rojo, mismo color que el sidebar principal en modo claro */
+  padding: 20px;
+  width: 100%;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Transición para el cambio de tema */
+  color: white; /* Texto blanco en modo claro */
+}
+
+.mode-toggle {
+  /* ... estilos existentes ... */
+  font-family: 'Crusoe Text', sans-serif;
+  font-size: 1.2em;
+  font-weight: bold;
+  color: white; /* Texto blanco en modo claro */
+}
+
+/* Botón Salir */
+.logout-btn {
+  color: var(--button-text-light); /* Texto rojo */
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 1.1em;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.logout-btn:hover {
+  background-color: #4051e1; /* Amarillo más oscuro al pasar el mouse en modo claro */
+}
+
+
+.dashboard-content {
+  flex-grow: 1;
+  padding: 40px;
+  background-color: var(--background-light); /* Fondo CLARO del contenido en modo claro */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  transition: background-color 0.3s ease, color 0.3s ease; /* Transición para el cambio de tema */
+}
+
+.dashboard-content h1{
+  font-family: "Paytone One", sans-serif;
+  color: var(--text-dark);
+  font-size: 70px;
+  margin-bottom: -2px;
+}
+
+.bottom-right-icon img {
+  width: 80px;
+  height: 80px;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  cursor: pointer;
+}
+.username-display {
+  color: var(--text-dark); /* Texto oscuro en modo claro */
+  font-family: 'Crusoe Text', sans-serif;
+}

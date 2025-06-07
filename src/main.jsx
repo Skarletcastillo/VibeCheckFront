@@ -1,11 +1,18 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import Interfaz from "./Views/Interfaz";
+// src/main.jsx
+import React from "react";
+import ReactDOM from "react-dom/client";
+import { BrowserRouter, useRoutes } from "react-router-dom";
+import { enrutador } from "./routes/enrutador";
 
-document.title = "Iniciar Sesión";
+function AppRouter() {
+  // Aquí es donde React lee tu enrutador y monta las rutas
+  return useRoutes(enrutador);
+}
 
-createRoot(document.getElementById("root")).render(
-  <StrictMode>
-    <Interfaz />
-  </StrictMode>
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <React.StrictMode>
+    <BrowserRouter>
+      <AppRouter />
+    </BrowserRouter>
+  </React.StrictMode>
 );

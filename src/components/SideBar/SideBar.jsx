@@ -1,37 +1,74 @@
-import "./SideBar.css";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import userIcon from "../../assets/user-icon.png";
+import homeIcon from "../../assets/home-icon.png";
+import coursesIcon from "../../assets/courses-icon.png";
+import checkIcon from "../../assets/check-icon.png";
+import "./Sidebar.css";
 
-function SideBar() {
+function Sidebar() {
+  const usuario = JSON.parse(localStorage.getItem("usuario"));
+  const userName = usuario?.nombre || "Usuario";
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [theme, setTheme] = useState("light");
+  const toggleTheme = () =>
+    setTheme((prev) => (prev === "light" ? "dark" : "light"));
+
+  const handleLogout = () => {
+    localStorage.clear();
+    alert("Has cerrado sesión (simulado).");
+    navigate("/");
+  };
+
   return (
-    <div className="SideBarContainer">
-      <div className="SeccionTop">
-        {/* aca van las modificaciones dependiente el perfil  */}
-        <img
-          className="ImgPerfil"
-          src="{fotoPerfil}"
-          alt="Imagen perfil usuario"
-        />
-        <p className="InformacionUsuario">{NombreUsuario}</p>
-      </div>
-      <hr />
-
-      <div className="SeccionMid">
-        <img src="#" alt="IconoCasa" />
-        <Link to="/home">Home</Link>
-        <img src="#" alt="IconoCursos" />
-        <Link to="/Cusos">Cursos</Link>
+    <aside className={`sidebar ${theme}`}>
+      <div className="sidebar-profile">
+        <img src={userIcon} alt="User Avatar" className="profile-avatar" />
+        <p className="profile-role">{userName}</p>
       </div>
 
-      <hr />
+      <nav className="sidebar-nav">
+        <Link
+          to="/home"
+          className={`nav-item ${
+            location.pathname === "/home" ? "active" : ""
+          }`}
+        >
+          <img src={homeIcon} alt="Home Icon" className="nav-icon" />
+          Home
+        </Link>
+        <Link
+          to="/home/curso"
+          className={`nav-item ${
+            location.pathname === "/home/curso" ? "active" : ""
+          }`}
+        >
+          <img src={coursesIcon} alt="Courses Icon" className="nav-icon" />
+          Cursos
+        </Link>
+      </nav>
 
-      <div className="SeccionBott">
-        <img src="" alt="IconoSalir" />
-        <Link to="/NavPages">Salir</Link>
-        <img src="" alt="IconoModo" />
-        <p>Modo</p>
+      <div className="sidebar-bottom">
+        <div className="mode-toggle">
+          <span>{theme === "light" ? "Light Mode" : "Dark Mode"}</span>
+          <label className="switch">
+            <input
+              type="checkbox"
+              checked={theme === "dark"}
+              onChange={toggleTheme}
+            />
+            <span className="slider round" />
+          </label>
+        </div>
+        <button className="logout-btn" onClick={handleLogout}>
+          <img src={checkIcon} alt="Logout Icon" className="logout-icon" />{" "}
+          Salir
+        </button>
       </div>
-    </div>
+    </aside>
   );
 }
 
-export default SideBar;
+export default Sidebar;
