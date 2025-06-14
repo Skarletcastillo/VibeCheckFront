@@ -1,48 +1,106 @@
-@import url('https://fonts.cdnfonts.com/css/crusoe-text'); /* Puedes elegir otra fuente si lo deseas */
-@import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
-/* src/pages/LoginPage.css */
+/* src/pages/Login/Login.css */
 
+/* Fuentes */
+@import url('https://fonts.cdnfonts.com/css/crusoe-text');
+@import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
+
+/* Contenedor principal de toda la página de login */
 .login-page-container {
   display: flex;
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  width: 100%;
-  background-color: #fff; /* Fondo blanco/gris claro general */
-  padding: 20px; /* Un poco de padding general */
-  box-sizing: border-box; /* Asegura que el padding no cause desbordamiento */
+  width: 100vw; /* Asegura que ocupe todo el ancho del viewport */
+  background-color: var(--background-light); /* Utiliza la variable del tema */
+  transition: background-color 0.3s ease;
+  overflow: hidden; /* Para asegurar que no haya barras de desplazamiento no deseadas */
+  padding: 20px; /* Un poco de padding para pantallas muy pequeñas */
+  box-sizing: border-box; /* Incluir padding en el tamaño total */
 }
 
+/* Sección de la ilustración (lado izquierdo) */
 .login-illustration-section {
+  flex: 1; /* Ocupa espacio flexible */
   display: flex;
   justify-content: center;
   align-items: center;
-  flex: 1; /* Ocupa espacio flexible */
   padding: 20px;
+  max-width: 40%; /* Ocupa la mitad del ancho */
+  box-sizing: border-box;
 }
 
-.happy-character {
+.illustration-image { /* Clase genérica para la imagen en el JSX */
   width: 500px; /* Ajusta el tamaño de la ilustración */
   height: 530px; /* Ajusta el tamaño de la ilustración */
-  margin-left: 65px; /* Centra la imagen */
   display: block; /* Elimina espacio extra */
+  object-fit: contain; /* Asegura que la imagen se ajuste bien */
 }
 
+/* Sección del formulario - ESTE ES EL CONTENEDOR DE LA TARJETA QUE SE VOLTEA */
 .login-form-section {
-  background: linear-gradient(to bottom, #e53935 0%, #e53935 2%, #ffffff 15%, #ffffff 50%);
-  padding: 30px 88px 30px;; /* Espacio alrededor del formulario */
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  max-width: 30%; /* Ocupa la otra mitad del ancho */
+  position: relative; /* Necesario para posicionar las caras */
+  height: 600px; /* **Altura fija para la tarjeta, ajusta según necesidad** */
+  max-height: 90vh; /* Limita la altura para pantallas pequeñas */
+  perspective: 1000px; /* Establece la perspectiva para el efecto 3D */
+}
+
+/* Contenedor interno que realmente se voltea */
+.login-card-flipper {
+  position: relative;
+  width: 100%; /* Ocupa el 100% del login-form-section */
+  height: 100%;
+  text-align: center;
+  transition: transform 0.8s; /* Duración y tipo de la animación de volteo */
+  transform-style: preserve-3d; /* ¡IMPORTANTE! Mantiene los hijos en 3D */
+}
+
+/* Cuando el contenedor principal tiene la clase 'is-flipped', se voltea */
+.login-form-section.is-flipped .login-card-flipper {
+  transform: rotateY(180deg);
+}
+
+/* Estilos comunes para ambas caras (frontal y trasera) */
+.login-card-front,
+.login-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden; /* Oculta la parte trasera de la cara cuando no está de frente */
   border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(196, 90, 90, 0.8);
+  box-shadow: 0 4px 10px rgba(196, 90, 90, 0.8); /* Sombra de la tarjeta */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 40px 30px; /* Espacio interno para el contenido */
+  box-sizing: border-box;
+  /* Fondo y colores basados en tu diseño original */
+  background: linear-gradient(to bottom, #e53935 0%, #e53935 2%, #ffffff 15%, #ffffff 50%);
+  color: #333; /* Color general del texto en las caras */
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Posición inicial de la cara trasera (rotada 180 grados para que no se vea) */
+.login-card-back {
+  transform: rotateY(180deg);
+}
+
+
+/* Estilos del formulario (aplicado a .form en el JSX) */
+.form {
+  width: 100%; /* El formulario ocupa todo el ancho de su cara */
+  max-width: 400px; /* Ancho máximo para el contenido del formulario */
   display: flex;
   flex-direction: column;
   gap: 15px; /* Espacio entre elementos del formulario */
-  width: 500px; /* Ancho del formulario */
-  box-sizing: border-box;
-  margin-top: -16px;
-  margin-right: 200px;
 }
 
-.login-form-section h2 {
+.form_details { /* Estilo para h2 */
   font-size: 30px;
   color: #ffd586; /* Amarillo para el título "Iniciar Sesión" */
   text-align: center;
@@ -52,27 +110,36 @@
 
 .form-group {
   display: flex;
-  flex-direction: column;
+  flex-direction: column; /* Coloca label e input en columna */
   gap: 8px; /* Espacio entre label e input */
   font-family: "Paytone One", sans-serif;
 }
 
 .form-group label {
-  font-size: 15px;
+  font-size: 18px;
   color: #555;
   font-weight: 500;
+  text-align: left;
+  font-family: "Paytone One", sans-serif;
+}
+.rol-register{
+  font-size: 18px;
+  color: #555;
+  font-weight: 500;
+  text-align: left;
   font-family: "Paytone One", sans-serif;
 }
 
 .login-input {
-  padding: 12px 15px;
+  padding: 1px 15px;
   border: 1px solid #ffd586; /* Borde rojo */
   background-color: #ff6d6d; /* Fondo rosa/rojo más claro para el input */
   border-radius: 8px;
-  font-size: 1.1em;
+  font-size: 15px; /* Ajustado de 15px a em para mejor escalado */
   color: #fff; /* Color del texto dentro del input */
   outline: none; /* Elimina el borde de enfoque por defecto */
   font-family: 'Crusoe Text', sans-serif;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease; /* Transición para enfoque */
 }
 
 .login-input::placeholder {
@@ -84,45 +151,49 @@
   box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.3); /* Sombra de enfoque amarilla */
 }
 
-/* Estilo para el botón de iniciar sesión */
+/* Estilo para el botón de iniciar sesión y registrarse */
 .login-btn {
   background-color: #ffd586; /* Amarillo */
   color: #fff; /* Rojo oscuro */
   padding: 15px 25px;
   border-radius: 8px;
-  font-size: 23px;
+  font-size: 23px; /* Ajustado de 15px */
   cursor: pointer;
   border: none; /* Sin borde */
   margin-top: 15px; /* Espacio encima del botón */
   font-family: "Paytone One", sans-serif;
+  transition: background-color 0.3s ease, transform 0.3s ease; /* Transición para hover */
 }
 
 .login-btn:hover {
-  background-color: #e5393e; /* Amarillo más claro */
+  background-color: #e5393e; /* Rojo más oscuro */
   transform: translateY(-2px); /* Pequeño efecto al pasar el ratón */
 }
 
 .signup-link {
   text-align: center;
-  font-size: 1em;
+  font-size: 1em; /* Ajustado de 15px */
   color: #666;
   margin-top: 10px;
   font-family: 'Crusoe Text', sans-serif;
 }
 
-.signup-link a {
-  color: #e5393e; /* Amarillo para el enlace */
+.signup_tog { /* Usando la clase que ya tienes para el span del JSX */
+  color: #e5393e; /* Rojo para el enlace de alternar */
   text-decoration: none; /* Sin subrayado */
   font-weight: bold;
   font-family: 'Crusoe Text', sans-serif;
+  cursor: pointer; /* Indica que es clickable */
+  transition: color 0.3s ease, text-decoration 0.3s ease;
 }
 
-.signup-link a:hover {
+.signup_tog:hover {
   text-decoration: underline; /* Subrayado al pasar el ratón */
+  color: #e5393e; /* Mantiene el color o ajusta si quieres un hover diferente */
 }
 
 /* Responsive adjustments */
-@media (max-width: 768px) {
+@media (max-width: 900px) { /* Ajustado de 768px a 900px para tabletas */
   .login-page-container {
     flex-direction: column; /* Columna en pantallas pequeñas */
     padding: 20px 15px;
@@ -131,21 +202,30 @@
   .login-illustration-section {
     order: 2; /* Pone la ilustración debajo del formulario en móvil */
     padding: 10px;
+    margin-bottom: 30px; /* Espacio entre ilustración y formulario */
   }
 
-  .happy-character {
+  .illustration-image { /* Para las dos ilustraciones */
     max-width: 60%; /* Más pequeño en móvil */
+    width: auto; /* Permite que la altura sea auto */
+    height: auto;
   }
 
   .login-form-section {
     order: 1; /* Pone el formulario encima en móvil */
-    padding: 30px 25px;
-    margin-bottom: 30px; /* Espacio entre el formulario y la ilustración */
     max-width: 100%; /* Ocupa todo el ancho disponible */
+    height: auto; /* Altura auto para que se adapte al contenido */
+    min-height: 450px; /* Mínimo para que no se vea muy pequeña */
+    padding: 30px 25px; /* Ajusta padding para móviles */
   }
 
-  .login-form-section h2 {
-    font-size: 1.8em;
+  .login-card-front,
+  .login-card-back {
+      padding: 30px 25px; /* Reduce el padding interno de las tarjetas en móvil */
+  }
+
+  .form_details {
+    font-size: 2em; /* Relativo al tamaño de fuente base */
   }
 
   .form-group label {
@@ -163,177 +243,59 @@
   }
 }
 
-
-/* @import url('https://fonts.cdnfonts.com/css/crusoe-text'); 
-@import url('https://fonts.googleapis.com/css2?family=Paytone+One&display=swap');
-
-
-.login-page-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  width: 100%;
-  background-color: #fff; 
-  padding: 20px;
-  box-sizing: border-box; 
-  
+/* ESTILOS PARA EL MODO OSCURO (DEBES DEFINIR ESTAS VARIABLES EN TU index.css) */
+body.dark-mode .login-page-container {
+  background-color: var(--background-dark);
 }
 
-.login-illustration-section {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex: 1; 
-  padding: 20px;
+body.dark-mode .login-card-front,
+body.dark-mode .login-card-back {
+  /* Fondo oscuro con el degradado adaptado */
+  background: linear-gradient(to bottom, var(--dark-red-gradient-start) 0%, var(--dark-red-gradient-end) 2%, var(--card-bg-dark) 15%, var(--card-bg-dark) 50%);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* Sombra más oscura */
+  color: var(--text-dark);
 }
 
-.happy-character {
-  width: 500px; 
-  height: 530px; 
-  margin-left: 65px;
-  display: block;
+body.dark-mode .form_details {
+  color: var(--primary-color-dark); /* Amarillo más brillante para el título en oscuro */
 }
 
-.login-form-section {
-  background: linear-gradient(to bottom, #e53935 0%, #e53935 2%, #ffffff 15%, #ffffff 50%);
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(196, 90, 90, 0.8);
-  margin-top: -16px;
-  margin-right: 350px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 60px 80px 60px 80px;
+body.dark-mode .form-group label {
+  color: var(--text-dark);
 }
 
-.login-form-section h2 {
-  font-size: 30px;
-  color: #ffd586; 
-  text-align: center;
-  margin-bottom: 20px;
-  font-family: "Paytone One", sans-serif;
+body.dark-mode .login-input {
+  border-color: var(--input-border-dark);
+  background-color: var(--input-bg-dark);
+  color: var(--input-text-dark);
 }
 
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 8px; 
-
+body.dark-mode .login-input::placeholder {
+  color: rgba(255, 255, 255, 0.5);
 }
 
-.form-group label {
-  font-size: 15px;
-  color: #555;
-  font-weight: 500;
-
+body.dark-mode .login-input:focus {
+  border-color: var(--primary-color-dark);
+  box-shadow: 0 0 0 3px rgba(255, 215, 0, 0.3);
 }
 
-.login-input {
-  padding: 12px 15px;
-  border: 1px solid #ffd586;
-  background-color: #ff6d6d; 
-  border-radius: 8px;
-  font-size: 15px;
-  color: #fff; 
-  outline: none; 
-
+body.dark-mode .login-btn {
+  background-color: var(--primary-color-dark);
+  color: var(--button-text-dark); /* Color del texto del botón en modo oscuro */
 }
 
-.login-input::placeholder {
-  color: rgba(255, 255, 255, 0.7); 
+body.dark-mode .login-btn:hover {
+  background-color: var(--primary-hover-color-dark);
 }
 
-.login-input:focus {
-  border-color: #ffd586; 
-  box-shadow: 0 0 0 3px rgba(255, 193, 7, 0.3); 
+body.dark-mode .signup-link {
+  color: var(--text-dark);
 }
 
-
-.login-btn {
-  background-color: #ffd586; 
-  color: #fff; 
-  padding: 15px 25px;
-  border-radius: 8px;
-  font-size: 15px;
-  cursor: pointer;
-  border: none; 
-  margin-top: 15px; 
-  font-family: "Paytone One", sans-serif;
+body.dark-mode .signup_tog {
+  color: var(--link-color-dark); /* Rojo oscuro o un color claro para el enlace en modo oscuro */
 }
 
-.login-btn:hover {
-  background-color: #e5393e; 
-  transform: translateY(-2px); 
+body.dark-mode .signup_tog:hover {
+  color: var(--link-hover-color-dark);
 }
-
-.signup-link {
-  text-align: center;
-  font-size: 15px;
-  color: #666;
-  margin-top: 10px;
-  font-family: 'Crusoe Text', sans-serif;
-}
-
-.signup-link a {
-  color: #e5393e; 
-  text-decoration: none; 
-  font-weight: bold;
-  font-family: 'Crusoe Text', sans-serif;
-}
-
-.signup-link a:hover {
-  text-decoration: underline; 
-}
-
-
-@media (max-width: 768px) {
-  .login-page-container {
-    flex-direction: column; 
-    padding: 20px 15px;
-  }
-
-  .login-illustration-section {
-    order: 2; 
-    padding: 10px;
-  }
-
-  .happy-character {
-    max-width: 60%; 
-  }
-
-  .login-form-section {
-    order: 1;
-    padding: 30px 25px;
-    margin-bottom: 30px; 
-    max-width: 100%; 
-  }
-
-  .login-form-section h2 {
-    font-size: 15px;
-  }
-
-  .form-group label {
-    font-size: 15px;
-  }
-
-  .login-input {
-    padding: 10px 12px;
-    font-size: 15px;
-  }
-
-  .login-btn {
-    padding: 12px 20px;
-    font-size: 15px;
-  }
-}
-
-.signup_tog {
-  color: #4a90e2;
-  cursor: pointer;
-  font-weight: bold;
-  text-decoration: underline;
-}
-.signup_tog:hover {
-  color: #2d6cdf;
-} */

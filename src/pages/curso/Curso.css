@@ -1,9 +1,53 @@
+/* src/pages/curso/Curso.css */
 
-/* Estilos admin */
+/*
+  Este archivo define el layout principal de la página /curso.
+  Asegura que el componente Curso ocupe toda la pantalla y que sus
+  componentes hijos (como VistaDocenteCurso) puedan extenderse y
+  aplicar sus propios layouts internos (sidebar + main-content).
+*/
 
+/* --- Base Global (para garantizar que la app ocupe 100vh) --- */
+/* Normalmente esto iría en un archivo CSS global (ej. index.css o App.css) */
+/* Pero lo ponemos aquí para asegurar que funcione con tu configuración. */
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Incluye padding y border en el tamaño total */
+    font-family: 'Inter', sans-serif; /* Asegúrate de que esta fuente se importe globalmente o aquí */
+    min-height: 100vh; /* ¡Importante para que la página ocupe toda la altura! */
+    overflow-x: hidden; /* Evita scroll horizontal innecesario */
+    background-color: #f0f2f5; /* Color de fondo base para toda la aplicación si no hay otro */
+}
 
-/* Estilos profesor */
+/* El div #root donde React monta la aplicación */
+#root {
+    min-height: 100vh;
+    display: flex; /* Asegura que #root use flexbox */
+    flex-direction: column; /* Organiza los elementos hijos de #root verticalmente */
+    width: 100%; /* Asegura que ocupe todo el ancho */
+}
 
+/* --- Contenedor principal de la página Curso --- */
+.curso-page-container {
+    display: flex; /* ¡CRÍTICO! Hacemos que este contenedor sea un flex container */
+    flex-direction: row; /* Los elementos hijos se alinearán en fila (horizontalmente: sidebar y contenido) */
+    min-height: 100vh; /* ¡CRÍTICO! Aseguramos que ocupe al menos el 100% de la altura de la ventana */
+    width: 100%; /* Aseguramos que ocupe el 100% del ancho disponible */
+    flex-grow: 1; /* Permite que este contenedor crezca para llenar el espacio restante */
+    /* El color de fondo de esta página es el que definirá el fondo visible si las vistas internas no cubren todo */
+    background-color: #f0f2f5; /* Un gris muy claro, común en dashboards modernos */
+    overflow: hidden; /* Para evitar barras de desplazamiento que no sean del contenido principal */
+}
 
-
-/* Estilos Alumno */
+/* Aclaración sobre la interacción de estilos:
+  1. `html, body, #root` aseguran que el contexto inicial ocupe toda la altura (`100vh`).
+  2. `.curso-page-container` toma ese `100vh` de su padre (`#root` o un div intermedio) 
+     y lo utiliza para establecer su propio `display: flex; flex-direction: row;`.
+     Esto crea el diseño de dos columnas que quieres (sidebar a la izquierda, contenido principal a la derecha).
+  3. Dentro de `VistaDocenteCurso.jsx` (que es el hijo de `curso-page-container`),
+     tienes el `.docente-dashboard-container`. Este también tiene `display: flex; min-height: 100vh;`.
+     Gracias a que `.curso-page-container` ya le ha dado el espacio horizontal y vertical,
+     `.docente-dashboard-container` ahora puede distribuir su propio contenido (sidebar interno y main-content)
+     correctamente, porque tiene un "padre" que le permite crecer.
+*/

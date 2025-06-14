@@ -1,8 +1,8 @@
+// src/helpers/funciones.js
 import Swal from "sweetalert2";
 
 export function alertRedirection(title, url, navigate) {
   let timerInterval;
-
   Swal.fire({
     title,
     html: "Usted será redireccionado en <b></b> milisegundos ⌛.",
@@ -28,6 +28,7 @@ export function alertRedirection(title, url, navigate) {
 }
 
 export function alertError(titulo, mensaje, icono = "error") {
+  console.log("DEBUG: alertError function called!"); // <-- ¡Añade esta línea!
   Swal.fire({
     title: titulo,
     text: mensaje,
@@ -45,5 +46,5 @@ export function alertSuccessful(titulo, mensaje) {
 
 export function generateTokens() {
   const part = () => Math.random().toString(36).substring(2, 10);
-  return `token-${part()}-${part()}`;
+  return `token-<span class="math-inline">\{part\(\)\}\-</span>{part()}`;
 }

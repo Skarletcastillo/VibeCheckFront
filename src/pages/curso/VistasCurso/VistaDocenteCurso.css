@@ -1,0 +1,887 @@
+/* src/pages/curso/VistasCurso/VistaDocenteCurso.css - Estilo Minimalista y Legible */
+
+/* Importación de la fuente Inter (asegúrate de que esté disponible en tu proyecto) */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap'); /* Añadido 800 y 900 para títulos */
+
+/* Variables de Color - Priorizando legibilidad y suavidad */
+:root {
+    --primary-color: #dc3545; /* Rojo vibrante */
+    --primary-color-rgb: 220, 53, 69; /* RGB de #dc3545 para sombras con transparencia */
+
+    --secondary-color: #6c757d; /* Gris medio para texto secundario y bordes */
+    --accent-color: #28a745; /* Verde para acciones positivas (éxito) */
+    --danger-color: #dc3545; /* Rojo para acciones negativas (alerta) */
+    --warning-color: #ffc107; /* Amarillo para advertencias */
+
+    --background-light: #f8f9fa; /* Fondo muy claro, casi blanco */
+    --background-mid: #e9ecef; /* Fondo ligeramente gris para secciones */
+    --card-bg: #ffffff; /* Fondo blanco puro para tarjetas y modales */
+
+    --text-dark: #343a40; /* Texto oscuro principal */
+    --text-light: #ffffff; /* Texto claro (para fondos oscuros) */
+
+    --border-color: #dee2e6; /* Color de borde general */
+    --shadow-light: rgba(0, 0, 0, 0.05); /* Sombra muy suave */
+    --shadow-medium: rgba(0, 0, 0, 0.1); /* Sombra un poco más pronunciada */
+}
+
+/* Base Global (asegura que la app ocupe 100vh) */
+html, body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: var(--text-dark);
+}
+
+#root {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+/* Contenedor principal del dashboard docente */
+.docente-dashboard-container {
+    display: flex;
+    min-height: 100vh;
+    background-color: var(--background-light);
+    width: 100%;
+    flex-grow: 1;
+}
+
+/* Sidebar de navegación */
+.docente-sidebar {
+    width: 260px;
+    background-color: var(--card-bg);
+    padding: 25px 20px;
+    box-shadow: 2px 0 10px var(--shadow-light);
+    display: flex;
+    flex-direction: column;
+    position: sticky;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    z-index: 200;
+    border-right: 1px solid var(--border-color);
+    flex-shrink: 0;
+    overflow-y: auto;
+}
+
+.sidebar-profile {
+    text-align: center;
+    margin-bottom: 35px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    position: relative;
+}
+
+.profile-avatar {
+    width: 75px;
+    height: 75px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border: 3px solid var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.2);
+}
+
+.profile-name {
+    margin: 5px 0 2px;
+    font-size: 1.2em;
+    color: var(--text-dark);
+    font-weight: 600;
+}
+
+.profile-role {
+    font-size: 0.85em;
+    color: var(--secondary-color);
+}
+
+.dropdown-arrow {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--secondary-color);
+    font-size: 0.9em;
+    transition: transform 0.3s ease;
+}
+
+.dropdown-arrow:hover {
+    transform: translateY(-50%) rotate(180deg);
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar-nav li {
+    margin-bottom: 8px;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 15px;
+    text-decoration: none;
+    color: var(--text-dark);
+    border-radius: 8px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-size: 0.98em;
+    font-weight: 500;
+}
+
+.nav-item:hover {
+    background-color: var(--background-mid);
+    color: var(--primary-color);
+}
+
+.nav-item.active,
+.nav-item.active-class {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(var(--primary-color-rgb), 0.3);
+}
+
+.nav-item.active .nav-icon, .nav-item.active-class .nav-icon {
+    color: var(--text-light);
+}
+
+.nav-icon {
+    font-size: 1.15em;
+    color: var(--secondary-color);
+    transition: color 0.3s ease;
+}
+
+.novedad-tag {
+    background-color: var(--danger-color);
+    color: white;
+    padding: 2px 7px;
+    border-radius: 12px;
+    font-size: 0.7em;
+    margin-left: 8px;
+    font-weight: 600;
+}
+
+.nav-section-title {
+    font-size: 0.8em;
+    color: var(--secondary-color);
+    margin: 25px 0 10px 15px;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 0.5px;
+}
+
+.new-class-btn {
+    background-color: var(--accent-color);
+    color: white;
+    text-align: center;
+    margin-top: 20px;
+    padding: 14px;
+    border-radius: 10px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: bold;
+    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.3);
+}
+
+.new-class-btn:hover {
+    background-color: #218838;
+    transform: translateY(-2px);
+}
+
+.sidebar-footer {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid var(--border-color);
+    text-align: center;
+    font-size: 0.8em;
+    color: var(--secondary-color);
+}
+
+/* Contenido Principal del Dashboard */
+.docente-main-content {
+    flex-grow: 1;
+    padding: 30px 35px;
+    background-color: var(--background-mid);
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* --- ENCABEZADO (HEADER) --- */
+.main-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--card-bg);
+    padding: 18px 25px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px var(--shadow-light);
+    margin-bottom: 30px;
+    border: 1px solid var(--border-color);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.class-name {
+    font-size: 1.9em;
+    color: var(--text-dark);
+    margin: 0;
+    font-weight: 700;
+}
+
+.header-nav {
+    display: flex;
+    gap: 25px;
+}
+
+.header-nav-item {
+    text-decoration: none;
+    color: var(--secondary-color);
+    font-weight: 500;
+    padding: 8px 0px;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    position: relative;
+    font-size: 1em;
+}
+
+.header-nav-item:hover {
+    color: var(--primary-color);
+}
+
+.header-nav-item.active {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.header-nav-item.active::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: -8px;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+
+.header-right-icons {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.family-connection-status {
+    font-size: 0.9em;
+    color: var(--secondary-color);
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+.family-connection-status:hover {
+    color: var(--primary-color);
+}
+
+.options-dropdown-container {
+    position: relative;
+}
+
+.options-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 10px 18px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.95em;
+    transition: background-color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+}
+
+.options-btn:hover {
+    background-color: #b02a3a;
+}
+
+.profile-options-menu {
+    position: absolute;
+    top: 110%;
+    right: 0;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    box-shadow: 0 4px 15px var(--shadow-medium);
+    min-width: 160px;
+    z-index: 1000;
+    padding: 5px 0;
+}
+
+.profile-options-menu span {
+    display: block;
+    padding: 10px 15px;
+    cursor: pointer;
+    color: var(--text-dark);
+    font-size: 0.9em;
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.profile-options-menu span:hover {
+    background-color: var(--background-mid);
+    color: var(--primary-color);
+}
+
+.header-profile-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid var(--primary-color);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.header-profile-icon:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 0 4px rgba(var(--primary-color-rgb), 0.2);
+}
+
+/* Sección de Alumnos/Grupos (General content section styling) */
+.class-overview-section {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 12px var(--shadow-light);
+    margin-top: 25px;
+    border: 1px solid var(--border-color);
+    width: 100%;
+    box-sizing: border-box;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.class-overview-section > * {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.tab-navigation {
+    display: flex;
+    margin-bottom: 20px;
+    border-bottom: 1px solid var(--border-color);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.tab-button {
+    background: none;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: var(--secondary-color);
+    transition: all 0.3s ease;
+    position: relative;
+    font-weight: 600;
+}
+
+.tab-button.active {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+.tab-button.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    width: 100%;
+    height: 3px;
+    background-color: var(--primary-color);
+    border-radius: 2px;
+}
+
+.tab-button:hover:not(.active) {
+    color: var(--text-dark);
+}
+
+.students-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+    padding: 20px 0;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.student-card {
+    background-color: var(--background-light);
+    border: 1px solid var(--border-color);
+    border-radius: 10px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.student-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px var(--shadow-light);
+}
+
+.student-card img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 10px;
+    border: 2px solid var(--primary-color);
+}
+
+.student-card span {
+    font-size: 0.95em;
+    color: var(--text-dark);
+    font-weight: 500;
+    display: block;
+}
+
+.all-class-card {
+    background-color: var(--primary-color);
+    color: white;
+}
+.all-class-card img {
+    border-color: white;
+}
+.all-class-card span {
+    color: white;
+}
+
+.add-student-card {
+    background-color: var(--accent-color);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.add-icon {
+    font-size: 3em;
+    line-height: 1;
+    margin-bottom: 5px;
+    color: white;
+}
+
+.add-student-card span {
+    color: white;
+    font-weight: bold;
+}
+
+.create-class-action {
+    text-align: center;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px dashed var(--border-color);
+}
+
+.create-class-action p {
+    font-size: 1.1em;
+    color: var(--text-dark);
+    margin-bottom: 15px;
+}
+
+.create-class-btn {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: bold;
+}
+
+.create-class-btn:hover {
+    background-color: #b02a3a;
+    transform: translateY(-2px);
+}
+
+/* Herramientas Inferiores (Footer) */
+.bottom-tools-footer {
+    background-color: var(--card-bg);
+    color: var(--text-dark);
+    padding: 15px 0;
+    text-align: center;
+    display: flex;
+    justify-content: space-around;
+    gap: 15px;
+    box-shadow: 0 -2px 10px var(--shadow-light);
+    position: sticky;
+    bottom: 0;
+    width: 100%;
+    z-index: 100;
+    border-top: 1px solid var(--border-color);
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    margin-top: auto;
+}
+
+.tool-item {
+    text-decoration: none;
+    color: var(--secondary-color);
+    font-weight: 500;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    font-size: 0.95em;
+    padding: 8px 15px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+}
+
+.tool-item:hover {
+    color: var(--primary-color);
+    background-color: var(--background-mid);
+}
+
+.tool-item.active {
+    background-color: var(--primary-color);
+    color: var(--text-light);
+    box-shadow: 0 2px 8px rgba(var(--primary-color-rgb), 0.3);
+}
+
+.tool-item .footer-icon {
+    font-size: 1.2em;
+    color: inherit;
+}
+
+/* Estilos para AsistenciaContent (La Planilla) */
+.asistencia-planilla-container {
+    background-color: var(--card-bg);
+    padding: 40px; /* Más padding para el diseño de planilla */
+    border-radius: 12px;
+    box-shadow: 0 5px 15px var(--shadow-light);
+    max-width: 900px; /* Ancho fijo para la planilla */
+    margin: 30px auto; /* Centra y da margen */
+    border: 1px solid var(--border-color);
+    box-sizing: border-box;
+    flex-grow: 1; /* Permite que este contenedor también crezca verticalmente */
+    position: relative; /* Para los puntos decorativos */
+    overflow: hidden; /* Para contener los puntos */
+}
+
+/* Puntos decorativos en la esquina superior derecha */
+.asistencia-planilla-container::before {
+    content: '';
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 80px;
+    height: 80px;
+    background: radial-gradient(circle at center, var(--primary-color) 4px, transparent 0%) repeat;
+    background-size: 15px 15px; /* Tamaño de cada punto y espaciado */
+    opacity: 0.6;
+    transform: rotate(15deg);
+    z-index: 0;
+}
+
+
+.asistencia-title {
+    color: var(--primary-color); /* Rojo principal */
+    margin-bottom: 30px;
+    font-size: 2.8em; /* Título más grande */
+    text-align: center;
+    font-weight: 800; /* Más grueso */
+    position: relative;
+    z-index: 1; /* Para que esté por encima de los puntos */
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.asistencia-header-inputs {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end; /* Alinea los inputs en la parte inferior */
+    gap: 30px; /* Espacio entre los campos de clase y fecha */
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.asistencia-header-inputs .input-group {
+    display: flex;
+    flex-direction: column; /* Apila label y input */
+    flex: 1; /* Permite que cada grupo ocupe el espacio disponible */
+}
+
+.asistencia-header-inputs label {
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 8px;
+    font-size: 1em;
+}
+
+.asistencia-header-inputs input[type="text"],
+.asistencia-header-inputs input[type="date"] {
+    padding: 12px 15px;
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    font-size: 1em;
+    color: var(--text-dark);
+    background-color: var(--background-light);
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    width: 100%; /* Ocupa todo el ancho del grupo */
+    box-sizing: border-box;
+}
+
+.asistencia-header-inputs input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(var(--primary-color-rgb), 0.2);
+}
+
+.asistencia-table-wrapper {
+    overflow-x: auto; /* Permite scroll horizontal si la tabla es muy ancha */
+    margin-bottom: 30px;
+    border: 1px solid var(--border-color); /* Borde general para la tabla */
+    border-radius: 8px;
+    box-shadow: 0 2px 8px var(--shadow-light);
+}
+
+.asistencia-table {
+    width: 100%;
+    border-collapse: collapse; /* Elimina el espacio entre celdas */
+    min-width: 600px; /* Ancho mínimo para la tabla si es muy estrecha */
+}
+
+.asistencia-table th,
+.asistencia-table td {
+    padding: 12px 15px;
+    text-align: left;
+    border: 1px solid var(--border-color); /* Bordes de celda */
+}
+
+.asistencia-table th {
+    background-color: var(--primary-color); /* Fondo rojo para el encabezado */
+    color: white;
+    font-weight: 600;
+    font-size: 1.05em;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-color: var(--primary-color); /* Bordes del encabezado del mismo color */
+}
+
+.asistencia-table td {
+    background-color: var(--card-bg);
+    color: var(--text-dark);
+    vertical-align: middle; /* Alinea el contenido verticalmente */
+}
+
+.asistencia-table tbody tr:nth-child(odd) {
+    background-color: var(--background-light); /* Rayas alternas */
+}
+
+.asistencia-table tbody tr:hover {
+    background-color: var(--background-mid); /* Resalta la fila al pasar el ratón */
+}
+
+.asistencia-table td:first-child {
+    font-weight: bold;
+    text-align: center;
+    width: 50px; /* Ancho fijo para el número */
+    background-color: var(--background-light); /* Fondo para la columna de No. */
+}
+
+.student-name-cell {
+    font-weight: 500;
+    width: 30%; /* Ancho para la columna de nombre */
+}
+
+/* Estilos para los inputs dentro de la tabla */
+.asistencia-table input[type="time"],
+.asistencia-table input[type="text"] {
+    width: calc(100% - 10px); /* Ocupa el 100% del ancho de la celda menos un pequeño margen */
+    padding: 8px;
+    border: 1px solid var(--border-color);
+    border-radius: 6px;
+    font-size: 0.95em;
+    color: var(--text-dark);
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+    box-sizing: border-box; /* Incluye padding y border en el ancho */
+}
+
+.asistencia-table input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(var(--primary-color-rgb), 0.1);
+}
+
+.save-attendance-btn {
+    display: block;
+    width: 50%; /* Más estrecho */
+    max-width: 300px; /* Máximo ancho para el botón */
+    margin: 40px auto 0;
+    padding: 15px 25px;
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 1.2em;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 10px rgba(var(--primary-color-rgb), 0.3);
+}
+
+.save-attendance-btn:hover {
+    background-color: #b02a3a;
+    transform: translateY(-2px);
+}
+
+.save-attendance-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(var(--primary-color-rgb), 0.4);
+}
+
+/* Estilos de fallback/genéricos para componentes directos en main-content */
+.docente-main-content > section:not(.asistencia-planilla-container) { /* Apuntamos a section y excluimos la planilla */
+    background-color: var(--card-bg);
+    padding: 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px var(--shadow-light);
+    border: 1px solid var(--border-color);
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Estilos para el botón de cerrar sesión en el sidebar */
+.logout-button {
+    background-color: var(--danger-color);
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 0.9em;
+    margin-top: 15px;
+    transition: background-color 0.3s ease;
+    font-weight: 600;
+}
+
+.logout-button:hover {
+    background-color: #c82333;
+}
+
+/* Media Queries para responsividad */
+@media (max-width: 768px) {
+    .docente-sidebar {
+        width: 100%;
+        height: auto;
+        position: relative;
+        box-shadow: none;
+        border-right: none;
+        padding-bottom: 0;
+    }
+
+    .docente-main-content {
+        padding: 20px;
+    }
+
+    .main-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 15px;
+    }
+
+    .class-name {
+        font-size: 1.5em; /* Reducido para pantallas pequeñas */
+    }
+
+    .header-nav {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .header-nav-item {
+        padding: 5px 10px;
+        font-size: 0.9em;
+    }
+
+    .header-right-icons {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        width: 100%;
+    }
+
+    .bottom-tools-footer {
+        flex-direction: column;
+        gap: 10px;
+        padding: 10px;
+    }
+
+    .tool-item {
+        width: 100%;
+        justify-content: center;
+        padding: 10px 0;
+        border-radius: 8px;
+    }
+
+    .asistencia-planilla-container {
+        padding: 20px;
+        margin: 20px auto;
+    }
+
+    .asistencia-title {
+        font-size: 2em;
+    }
+
+    .asistencia-header-inputs {
+        flex-direction: column;
+        gap: 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .asistencia-title {
+        font-size: 1.8em;
+    }
+
+    .asistencia-table-wrapper {
+        border-radius: 0;
+    }
+
+    .asistencia-table th,
+    .asistencia-table td {
+        padding: 8px 10px;
+        font-size: 0.9em;
+    }
+
+    .asistencia-table input {
+        padding: 6px;
+    }
+
+    .save-attendance-btn {
+        width: 90%;
+        font-size: 1em;
+        padding: 12px 20px;
+    }
+}
